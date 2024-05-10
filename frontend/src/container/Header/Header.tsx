@@ -16,7 +16,7 @@ const scaleVariants = {
 };
 
 const handleDownload = () => {
-  const pdfUrl = "/public/SurajDaradeResumeTPO.pdf";
+  const pdfUrl = "SurajDaradeResumeTPO.pdf";
   const tempLink = document.createElement("a");
   tempLink.href = pdfUrl;
   tempLink.setAttribute("download", "SurajDaradeResumeTPO.pdf");
