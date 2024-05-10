@@ -7,9 +7,19 @@ import { AppWrap, MotionWrap } from "../../wrapper";
 import { urlFor, client } from "../../client";
 import "./Project.scss";
 
+interface ProjectData {
+  title: string;
+  imgUrl: string;
+  name: string;
+  projectLink: string;
+  codeLink: string;
+  description: string;
+  tags: string[];
+}
+
 const Project = () => {
-  const [projects, setProjects] = useState([]);
-  const [filterProject, setFilterProject] = useState([]);
+  const [projects, setProjects] = useState<ProjectData[]>([]);
+  const [filterProject, setFilterProject] = useState<ProjectData[]>([]);
   const [activeFilter, setActiveFilter] = useState("All");
   const [animateCard, setAnimateCard] = useState({ y: 0, opacity: 1 });
 
@@ -22,7 +32,7 @@ const Project = () => {
     });
   }, []);
 
-  const handleWorkFilter = (item) => {
+  const handleWorkFilter = (item: string) => {
     setActiveFilter(item);
     setAnimateCard({ y: 100, opacity: 0 });
 
@@ -67,7 +77,7 @@ const Project = () => {
         {filterProject.map((project, index) => (
           <div className="app__work-item app__flex" key={index}>
             <div className="app__work-img app__flex">
-              <img src={urlFor(project.imgUrl)} alt={project.name} />
+              <img src={urlFor(project.imgUrl).url()} alt={project.name} />
 
               <motion.div
                 whileHover={{ opacity: [0, 1] }}

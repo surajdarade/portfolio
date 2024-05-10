@@ -2,14 +2,29 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Tooltip } from "react-tooltip";
-
 import { AppWrap, MotionWrap } from "../../wrapper";
 import { urlFor, client } from "../../client";
 import "./Skills.scss";
 
+interface Experience {
+  year: string;
+  works: Work[];
+}
+
+interface Work {
+  name: string;
+  company: string;
+  desc: string;
+}
+
+interface Skill {
+  name: string;
+  icon: string;
+}
+
 const Skills = () => {
-  const [experiences, setExperiences] = useState([]);
-  const [skills, setSkills] = useState([]);
+  const [experiences, setExperiences] = useState<Experience[]>([]);
+  const [skills, setSkills] = useState<Skill[]>([]);
 
   useEffect(() => {
     const query = '*[_type == "experiences"]';
@@ -37,12 +52,8 @@ const Skills = () => {
               className="app__skills-item app__flex"
               key={skill.name}
             >
-              <div
-                className="app__flex"
-                //style={{ backgroundColor: skill.bgColor }}
-                style={{ backgroundColor: "#f6fff8" }}
-              >
-                <img src={urlFor(skill.icon)} alt={skill.name} />
+              <div className="app__flex" style={{ backgroundColor: "#f6fff8" }}>
+                <img src={urlFor(skill.icon).url()} alt={skill.name} />
               </div>
               <p className="p-text">{skill.name}</p>
             </motion.div>

@@ -6,13 +6,20 @@ import { AppWrap, MotionWrap } from "../../wrapper";
 import "./About.scss";
 import { urlFor, client } from "../../client";
 
+// Define the type for the data fetched from Sanity
+interface AboutData {
+  title: string;
+  imgUrl: string;
+  description: string;
+}
+
 const About = () => {
-  const [abouts, setAbouts] = useState([]);
+  const [abouts, setAbouts] = useState<AboutData[]>([]);
 
   useEffect(() => {
     const query = '*[_type == "abouts"]';
 
-    client.fetch(query).then((data) => {
+    client.fetch<AboutData[]>(query).then((data) => {
       setAbouts(data);
     });
   }, []);
@@ -33,7 +40,7 @@ const About = () => {
             className="app__profile-item"
             key={about.title + index}
           >
-            <img src={urlFor(about.imgUrl)} alt={about.title} />
+            <img src={urlFor(about.imgUrl).url()} alt={about.title} />
             <h2 className="bold-text" style={{ marginTop: 20 }}>
               {about.title}
             </h2>

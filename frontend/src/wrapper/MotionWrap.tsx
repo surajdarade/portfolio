@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
-
-const MotionWrap = (Component, classNames) =>
+import { ComponentType, JSXElementConstructor } from 'react';
+const MotionWrap = (
+  Component: ComponentType<unknown> | JSXElementConstructor<unknown>,
+  classNames: string
+) =>
   function HOC() {
     return (
       <motion.div

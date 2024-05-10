@@ -1,5 +1,5 @@
+/* eslint-disable react-refresh/only-export-components */
 import { motion } from "framer-motion";
-
 import { AppWrap } from "../../wrapper";
 import { images } from "../../constants";
 import "./Header.scss";
@@ -77,5 +77,4 @@ const Header = () => (
   </div>
 );
 
-// eslint-disable-next-line react-refresh/only-export-components
-export default AppWrap(Header, "home");
+export default AppWrap(Header, "home", "");

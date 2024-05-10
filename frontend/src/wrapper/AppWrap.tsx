@@ -1,6 +1,11 @@
-import { NavigationDots, SocialMedia } from "../components";
+import { ComponentType, JSXElementConstructor } from 'react';
+import { NavigationDots, SocialMedia } from '../components';
 
-const AppWrap = (Component, idName, classNames) =>
+const AppWrap = (
+  Component: ComponentType<unknown> | JSXElementConstructor<unknown>, 
+  idName: string | undefined, 
+  classNames: string
+) =>
   function HOC() {
     return (
       <div id={idName} className={`app__container ${classNames}`}>
@@ -13,7 +18,7 @@ const AppWrap = (Component, idName, classNames) =>
             <p className="p-text">All rights reserved</p>
           </div>
         </div>
-        <NavigationDots active={idName} />
+        <NavigationDots active={idName!} />
       </div>
     );
   };
