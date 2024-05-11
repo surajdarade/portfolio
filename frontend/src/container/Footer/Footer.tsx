@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { useState } from "react";
-
+import toast from "react-hot-toast";
 import { images } from "../../constants";
 import { AppWrap, MotionWrap } from "../../wrapper";
 import { client } from "../../client";
@@ -25,6 +25,13 @@ const Footer = () => {
   };
 
   const handleSubmit = () => {
+    // Check if any of the fields are empty
+    if (!username || !email || !message) {
+      // Display error message
+      toast.error("Please fill in all fields");
+      return;
+    }
+
     setLoading(true);
 
     const contact = {
@@ -39,8 +46,23 @@ const Footer = () => {
       .then(() => {
         setLoading(false);
         setIsFormSubmitted(true);
+        // Reset form fields to empty after submission
+        setFormData({
+          username: "",
+          email: "",
+          message: "",
+        });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        // Display error message
+        toast.error("Failed to submit form");
+        setLoading(false);
+      });
+
+    setTimeout(() => {
+      setIsFormSubmitted(false);
+    }, 5000);
   };
 
   return (
@@ -71,6 +93,7 @@ const Footer = () => {
               name="username"
               value={username}
               onChange={handleChangeInput}
+              required
             />
           </div>
           <div className="app__flex">
@@ -81,6 +104,7 @@ const Footer = () => {
               name="email"
               value={email}
               onChange={handleChangeInput}
+              required
             />
           </div>
           <div>
@@ -90,6 +114,7 @@ const Footer = () => {
               value={message}
               name="message"
               onChange={handleChangeInput}
+              required
             />
           </div>
           <button type="button" className="p-text" onClick={handleSubmit}>

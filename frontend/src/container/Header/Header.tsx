@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { AppWrap } from "../../wrapper";
 import { images } from "../../constants";
 import "./Header.scss";
+import toast from "react-hot-toast";
 
 const scaleVariants = {
   whileInView: {
@@ -24,6 +25,8 @@ const handleDownload = () => {
   document.body.appendChild(tempLink);
   tempLink.click();
   document.body.removeChild(tempLink);
+
+  toast.success("File downloaded successfully!");
 };
 
 const Header = () => (
