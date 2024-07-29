@@ -16,18 +16,42 @@ const scaleVariants = {
   },
 };
 
-const handleDownload = () => {
-  const pdfUrl = "Suraj_Darade_Resume.pdf";
-  const tempLink = document.createElement("a");
-  tempLink.href = pdfUrl;
-  tempLink.setAttribute("download", "Suraj_Darade_Resume.pdf");
-  tempLink.style.display = "none";
-  document.body.appendChild(tempLink);
-  tempLink.click();
-  document.body.removeChild(tempLink);
+// const handleDownload = () => {
+//   const pdfUrl = "Suraj_Darade_Resume.pdf";
+//   const tempLink = document.createElement("a");
+//   tempLink.href = pdfUrl;
+//   tempLink.setAttribute("download", "Suraj_Darade_Resume.pdf");
+//   tempLink.style.display = "none";
+//   document.body.appendChild(tempLink);
+//   tempLink.click();
+//   document.body.removeChild(tempLink);
 
-  toast.success("File downloaded successfully!");
+//   toast.success("File downloaded successfully!");
+// };
+
+const handleDownload = async () => {
+  const pdfUrl = "Suraj_Darade_Resume.pdf";
+  try {
+    const response = await fetch(pdfUrl);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const blob = await response.blob();
+    const tempLink = document.createElement("a");
+    tempLink.href = URL.createObjectURL(blob);
+    tempLink.setAttribute("download", "Suraj_Darade_Resume.pdf");
+    tempLink.style.display = "none";
+    document.body.appendChild(tempLink);
+    tempLink.click();
+    document.body.removeChild(tempLink);
+
+    toast.success("File downloaded successfully!");
+  } catch (error) {
+    console.error('There was a problem with the download operation:', error);
+    toast.error("File download failed!");
+  }
 };
+
 
 const Header = () => (
   <div className="app__header app__flex">
