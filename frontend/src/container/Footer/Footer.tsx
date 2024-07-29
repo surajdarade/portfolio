@@ -52,6 +52,7 @@ const Footer = () => {
           email: "",
           message: "",
         });
+        toast.success("Message sent successfully!");
       })
       .catch((err) => {
         console.log(err);
