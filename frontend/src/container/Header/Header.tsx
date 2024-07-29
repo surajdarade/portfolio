@@ -17,10 +17,10 @@ const scaleVariants = {
 };
 
 const handleDownload = () => {
-  const pdfUrl = "SurajDaradeResumeTPO.pdf";
+  const pdfUrl = "Suraj_Darade_Resume.pdf";
   const tempLink = document.createElement("a");
   tempLink.href = pdfUrl;
-  tempLink.setAttribute("download", "SurajDaradeResumeTPO.pdf");
+  tempLink.setAttribute("download", "Suraj_Darade_Resume.pdf");
   tempLink.style.display = "none";
   document.body.appendChild(tempLink);
   tempLink.click();
@@ -71,7 +71,7 @@ const Header = () => (
       whileInView={scaleVariants.whileInView}
       className="app__header-circles"
     >
-      {[images.react, images.cpp, images.typescript].map((circle, index) => (
+      {[images.nextjs, images.cpp, images.typescript].map((circle, index) => (
         <div className="circle-cmp app__flex" key={`circle-${index}`}>
           <img src={circle} alt="profile_bg" />
         </div>
