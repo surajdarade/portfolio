@@ -4,7 +4,6 @@ This portfolio project showcases my personal portfolio website which includes se
 
 ## Features
 
-- **Resume**: View my resume.
 - **About**: Learn more about me.
 - **Projects**: Browse through the projects I've worked on.
 - **Skills**: View my skill set.
